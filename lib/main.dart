@@ -12,6 +12,12 @@ class MiApp extends StatelessWidget {
     return MaterialApp(
       title: 'FurryFriends',
       debugShowCheckedModeBanner: false,
+      // Aquí puedes definir las rutas para las páginas de navegación
+      routes: {
+        '/nosotros': (context) => const NosotrosPage(),
+        '/servicios': (context) => const ServiciosPage(),
+        '/productos': (context) => const ProductosPage(),
+      },
       home: const HomePage(),
     );
   }
@@ -81,21 +87,36 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.group, color: Colors.deepPurple),
               title: const Text('Nosotros'),
               onTap: () {
-                // Navegar a Nosotros
+                // Navegación a la página Nosotros
+                Navigator.pop(context); // Cierra el Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const NosotrosPage()),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.build, color: Colors.deepPurple),
               title: const Text('Servicios'),
               onTap: () {
-                // Navegar a Servicios
+                // Navegación a la página Servicios
+                Navigator.pop(context); // Cierra el Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ServiciosPage()),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.shopping_bag, color: Colors.deepPurple),
               title: const Text('Productos'),
               onTap: () {
-                // Navegar a Productos
+                // Navegación a la página Productos
+                Navigator.pop(context); // Cierra el Drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProductosPage()),
+                );
               },
             ),
           ],
@@ -267,7 +288,7 @@ class ContenidoPrincipal extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   'Bienvenido a FurryFriends',
@@ -281,7 +302,13 @@ class ContenidoPrincipal extends StatelessWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/servicios');
+                    // Para navegar a una ruta definida en MaterialApp.routes
+                    // Navigator.pushNamed(context, '/servicios');
+                    // O si prefieres instanciar directamente:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ServiciosPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF602BC2),
@@ -408,7 +435,7 @@ class ContenidoPrincipal extends StatelessWidget {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ClipRRect(
               borderRadius:
@@ -419,7 +446,7 @@ class ContenidoPrincipal extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(titulo,
                       style: const TextStyle(
@@ -452,7 +479,7 @@ class ContenidoPrincipal extends StatelessWidget {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ClipRRect(
               borderRadius:
@@ -463,7 +490,7 @@ class ContenidoPrincipal extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(titulo,
                       style: const TextStyle(
@@ -476,6 +503,413 @@ class ContenidoPrincipal extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+// =========================================================
+// DEFINICIÓN DE LAS PÁGINAS (Widgets) FUERA DE OTROS MÉTODOS
+// =========================================================
+
+class NosotrosPage extends StatelessWidget {
+  const NosotrosPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Sobre Nosotros"),
+        backgroundColor: const Color(0xFF602BC2),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Sección "Sobre Nosotros"
+            const Text(
+              'Sobre Nosotros',
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF602BC2),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Somos una empresa apasionada por el bienestar animal, dedicada a brindar servicios de calidad para el cuidado y paseo de mascotas. Nuestro objetivo es garantizar que cada mascota reciba la atención, el ejercicio y el cariño que merece.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 30),
+
+            // Sección "Misión"
+            const Text(
+              'Nuestra Misión',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF602BC2),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Proveer servicios integrales de paseo y cuidado de mascotas, fomentando la felicidad, salud y seguridad de cada peludo amigo, mientras fortalecemos el vínculo entre las mascotas y sus dueños.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 30),
+
+            // Sección "Visión"
+            const Text(
+              'Nuestra Visión',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF602BC2),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Convertirnos en la empresa líder en cuidado de mascotas, reconocida por nuestra innovación, compromiso y amor por los animales, promoviendo una cultura de responsabilidad y respeto hacia ellos.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 30),
+
+            // Sección "Eslogan"
+            const Text(
+              'Eslogan',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF602BC2),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              '"Transformamos cada paseo en una aventura y cada cuidado en una experiencia de amor"',
+              style: TextStyle(
+                fontSize: 16,
+                fontStyle: FontStyle.italic,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ServiciosPage extends StatelessWidget {
+  const ServiciosPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Scaffold aquí para tener AppBar y estructura de página completa
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Servicios'),
+        backgroundColor: const Color(0xFF602BC2),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'Servicios Disponibles',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 24),
+            _buildServicio(
+              titulo: 'Paseo para mascota',
+              descripcion:
+                  'Ofrecemos paseos para tu mascota, ayudando y facilitando el encuentro de un paseador para brindarle el mejor servicio a tu mascota.',
+            ),
+            _buildServicio(
+              titulo: 'Guardería para Mascotas',
+              descripcion:
+                  'Un lugar seguro y cómodo donde tu mascota podrá jugar y descansar mientras tú estás fuera.',
+            ),
+            _buildServicio(
+              titulo: 'Entrenamiento Canino',
+              descripcion:
+                  'Clases de entrenamiento personalizadas para mejorar el comportamiento de tu perro.',
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              'Ubicación en el mapa',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              height: 200,
+              width: double.infinity,
+              color: Colors.grey[300],
+              child: const Center(
+                child: Text(
+                  'Aquí irá el mapa (implementación futura)',
+                  style: TextStyle(color: Colors.black54),
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              'Contacto',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Para más información, no dudes en ponerte en contacto con nosotros.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 24),
+            const _FormularioContacto(), // Instancia la clase de formulario
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildServicio({required String titulo, required String descripcion}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            titulo,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            descripcion,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FormularioContacto extends StatefulWidget {
+  const _FormularioContacto({super.key});
+
+  @override
+  State<_FormularioContacto> createState() => _FormularioContactoState();
+}
+
+class _FormularioContactoState extends State<_FormularioContacto> {
+  final _formKey = GlobalKey<FormState>();
+  String nombre = '';
+  String email = '';
+  String mensaje = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(labelText: 'Nombre'),
+            validator: (value) => value!.isEmpty ? 'Ingrese su nombre' : null,
+            onSaved: (value) => nombre = value!,
+          ),
+          TextFormField(
+            decoration: const InputDecoration(labelText: 'Correo Electrónico'),
+            keyboardType: TextInputType.emailAddress,
+            validator: (value) =>
+                value!.isEmpty ? 'Ingrese un correo electrónico válido' : null,
+            onSaved: (value) => email = value!,
+          ),
+          TextFormField(
+            decoration: const InputDecoration(labelText: 'Mensaje'),
+            maxLines: 4,
+            validator: (value) =>
+                value!.isEmpty ? 'Por favor ingrese su mensaje' : null,
+            onSaved: (value) => mensaje = value!,
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: _enviarFormulario,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF602BC2),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+            ),
+            child: const Text('Enviar', style: TextStyle(fontSize: 16, color: Colors.white)), // Added color for text
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _enviarFormulario() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      // Aquí podrías agregar lógica para enviar el mensaje
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Mensaje enviado correctamente')),
+      );
+    }
+  }
+}
+
+class ProductosPage extends StatelessWidget {
+  const ProductosPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Productos'),
+        backgroundColor: const Color(0xFF602BC2),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const Text(
+            'Ropa para mascota:',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          const _CarruselProductos(titulo: 'Carrusel 1'), // Usar const
+          const SizedBox(height: 32),
+          const _CarruselProductos(titulo: 'Carrusel 2'), // Usar const
+          const SizedBox(height: 32),
+          const _CarruselProductos(titulo: 'Carrusel 3'), // Usar const
+          const SizedBox(height: 32),
+          const _CarruselProductos(titulo: 'Carrusel 4 con título',
+              incluyeTitulo: true), // Usar const
+        ],
+      ),
+    );
+  }
+}
+
+class _CarruselProductos extends StatefulWidget {
+  final String titulo;
+  final bool incluyeTitulo;
+
+  const _CarruselProductos({
+    super.key, // Añadir super.key
+    required this.titulo,
+    this.incluyeTitulo = false,
+  });
+
+  @override
+  State<_CarruselProductos> createState() => _CarruselProductosState();
+}
+
+class _CarruselProductosState extends State<_CarruselProductos> {
+  final PageController _controller = PageController(viewportFraction: 0.8);
+  int _paginaActual = 0;
+
+  final List<Map<String, String>> productos = [
+    {
+      'img': 'assets/img/new-product-1.jpg',
+      'titulo': 'Chaleco para perro',
+    },
+    {'img': 'assets/img/new-product-2.jpg', 'titulo': 'Correa de paseo'}, // Added title for consistency
+    {'img': 'assets/img/new-product-3.jpg', 'titulo': 'Cama para gatos'},
+    {'img': 'assets/img/new-product-4.jpg', 'titulo': 'Juguete interactivo'},
+    {'img': 'assets/img/new-product-5.jpg', 'titulo': 'Comedero automático'},
+    {'img': 'assets/img/new-product-6.jpg', 'titulo': 'Champú para mascotas'},
+  ];
+
+  @override
+  void dispose() {
+    _controller.dispose(); // Importante para liberar recursos del controlador
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: widget.incluyeTitulo ? 240 : 200,
+          child: PageView.builder(
+            controller: _controller,
+            onPageChanged: (index) {
+              setState(() {
+                _paginaActual = index;
+              });
+            },
+            itemCount: productos.length,
+            itemBuilder: (context, index) {
+              final producto = productos[index];
+              final bool activo = index == _paginaActual;
+              return _buildItem(producto, activo);
+            },
+          ),
+        ),
+        const SizedBox(height: 8),
+        _buildControles(),
+      ],
+    );
+  }
+
+  Widget _buildItem(Map<String, String> producto, bool activo) {
+    final double scale = activo ? 1.0 : 0.9;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      transform: Matrix4.identity()..scale(scale),
+      child: Column(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.asset(
+                producto['img']!,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
+            ),
+          ),
+          if (widget.incluyeTitulo && producto.containsKey('titulo'))
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                producto['titulo']!,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildControles() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+          onPressed: _paginaActual > 0
+              ? () {
+                  _controller.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              : null,
+          style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF602BC2)), // Added color
+          child: const Text('Prev', style: TextStyle(color: Colors.white)), // Added color for text
+        ),
+        const SizedBox(width: 16),
+        ElevatedButton(
+          onPressed: _paginaActual < productos.length - 1
+              ? () {
+                  _controller.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              : null,
+          style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF602BC2)), // Added color
+          child: const Text('Next', style: TextStyle(color: Colors.white)), // Added color for text
+        ),
+      ],
     );
   }
 }
